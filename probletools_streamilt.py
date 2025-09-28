@@ -226,3 +226,9 @@ elif tool_choice == "3-Year Financials + Chart":
         st.download_button("📥 Download Processed 3Y Excel", data=output,
                            file_name="processed_financials.xlsx",
                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+         # --- Chart Download (PNG) ---
+        chart_output = io.BytesIO()
+        fig.savefig(chart_output, format="png", bbox_inches="tight")
+        chart_output.seek(0)
+        st.download_button("📥 Download Chart as PNG", data=chart_output,
+                           file_name="financial_chart.png", mime="image/png")
