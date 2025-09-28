@@ -219,29 +219,26 @@ if tool_choice == "Industry Analysis":
 elif tool_choice == "3-Year Financials + Chart":
     uploaded_file = st.file_uploader("Upload Single Financial Excel (.xls or .xlsx) File", type=["xls", "xlsx"])
     if uploaded_file:
-        # Extract company name from "About the Company"
+        # Extract company name from About the Company (A2)
         about_df = pd.read_excel(uploaded_file, sheet_name="About the Company", header=None)
-        company_name = str(about_df.iloc[1, 1]).strip()  # A2
+        company_name = str(about_df.iloc[1, 1]).strip()
         safe_name = re.sub(r'[^A-Za-z0-9]+', '_', company_name)
 
-        # Excel download
+        df, fig = process_three_years(uploaded_file)
+        st.dataframe(df)
+        st.pyplot(fig)
+
+        # --- Excel Download ---
         output = io.BytesIO()
         df.to_excel(output, index=False)
         output.seek(0)
-        st.download_button(
-        "📥 Download Processed 3Y Excel",
-        data=output,
-        file_name=f"{safe_name}_sheet.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+        st.download_button("📥 Download Processed 3Y Excel", data=output,
+                           file_name=f"{safe_name}_sheet.xlsx",
+                           mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
-        # Chart download
+        # --- Chart Download ---
         chart_output = io.BytesIO()
         fig.savefig(chart_output, format="png", bbox_inches="tight")
         chart_output.seek(0)
-        st.download_button(
-        "📥 Download Chart as PNG",
-        data=chart_output,
-        file_name=f"{safe_name}_chart.png",
-        mime="image/png"
-        )
+        st.download_button("📥 Download Chart as PNG", data=chart_output,
+                           file_name=f"{safe_name}_chart.png", mime="image/png")
