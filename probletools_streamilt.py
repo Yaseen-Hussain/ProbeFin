@@ -9,7 +9,7 @@ from datetime import datetime
 # ================== Helper Functions ==================
 
 def process_probe_data(uploaded_files):
-    """Tool 1: Probe Data Processor"""
+    """Tool 1: Industry Analysis"""
     financial_fields = [
         "Net Revenue", "Cost of Materials Consumed", "Gross Profit Margin (%)",
         "EBITDA Margin (%)", "Depreciation and Amortization Expense",
@@ -198,9 +198,9 @@ def process_three_years(uploaded_file):
 
 st.title("📊 Financial Analysis Tools")
 
-tool_choice = st.selectbox("Choose a Tool:", ["Probe Data Processor", "3-Year Financials + Chart"])
+tool_choice = st.selectbox("Choose a Tool:", ["Industry Analysis", "3-Year Financials + Chart"])
 
-if tool_choice == "Probe Data Processor":
+if tool_choice == "Industry Analysis":
     uploaded_files = st.file_uploader("Upload Multiple Financial Excel (.xls) Files", type=["xls"], accept_multiple_files=True)
     if uploaded_files:
         df = process_probe_data(uploaded_files)
