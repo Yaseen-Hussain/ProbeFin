@@ -240,7 +240,7 @@ elif tool_choice == "3-Year Financials + Chart":
 
         # --- Chart Download ---
         chart_output = io.BytesIO()
-        fig.savefig(chart_output, format="png", bbox_inches="tight")
+        fig.savefig(chart_output, format="png", bbox_inches="tight",transparent=True)
         chart_output.seek(0)
         st.download_button("📥 Download Chart as PNG", data=chart_output,
                            file_name=f"{safe_name}_chart.png", mime="image/png")
