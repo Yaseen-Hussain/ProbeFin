@@ -203,8 +203,10 @@ tool_choice = st.selectbox("Choose a Tool:", ["Industry Analysis", "3-Year Finan
 if tool_choice == "Industry Analysis":
     uploaded_files = st.file_uploader("Upload Multiple Financial Excel (.xls) Files", type=["xls"], accept_multiple_files=True)
     if uploaded_files:
-        company_name = about_sheet.cell_value(0, 1).strip()
-        safe_name = re.sub(r'[^A-Za-z0-9]+', '_', company_name)
+        df = process_probe_data(uploaded_files)
+        st.dataframe(df)
+        # Use first company name for file naming
+        safe_name = re.sub(r'[^A-Za-z0-9]+', '_', df["Company Name"].iloc[0])
 
         output = io.BytesIO()
         df.to_excel(output, index=False)
