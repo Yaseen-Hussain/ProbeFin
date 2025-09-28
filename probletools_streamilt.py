@@ -221,7 +221,7 @@ elif tool_choice == "3-Year Financials + Chart":
     if uploaded_file:
         # Extract company name from About the Company (A2)
         about_df = pd.read_excel(uploaded_file, sheet_name="About the Company", header=None)
-        company_name = str(about_df.iloc[1, 1]).strip()
+        company_name = str(about_df.iloc[0, 1]).strip()
         safe_name = re.sub(r'[^A-Za-z0-9]+', '_', company_name)
 
         df, fig = process_three_years(uploaded_file)
