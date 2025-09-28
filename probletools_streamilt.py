@@ -166,15 +166,15 @@ def process_three_years(uploaded_file):
     bars4 = ax1.bar([i + 1.5*bar_width for i in x], processed["Net Fixed Asset"], width=bar_width, label="Net Fixed Asset", color="indigo")
 
     ax1.set_xticks(x)
-    ax1.set_xticklabels(processed["Year"])
-    ax1.set_ylabel("INR (₹ Cr)")
-    ax1.set_title("Financial Performance (Last 3 FYs)")
+    ax1.set_xticklabels(processed["Year"],fontsize=11)
+    ax1.set_ylabel("INR (₹ Cr)",fontsize=12)
+    ax1.set_title("Financial Performance (Last 3 FYs)"fontsize=14)
 
     for bars in [bars1, bars2, bars3, bars4]:
         for bar in bars:
             height = bar.get_height()
             ax1.text(bar.get_x() + bar.get_width()/2, height, f"{height:.0f}",
-                     ha="center", va="bottom", fontsize=8)
+                     ha="center", va="bottom", fontsize=10)
 
     ax2 = ax1.twinx()
     ax2.plot(processed["Year"], processed["EBITDA (%)"], marker="o", color="powderblue", linewidth=2, label="EBITDA %")
@@ -182,13 +182,13 @@ def process_three_years(uploaded_file):
     ax2.set_ylabel("Percentage (%)")
 
     for i, val in enumerate(processed["EBITDA (%)"]):
-        ax2.text(i, val, f"{val:.0f}%", ha="center", va="bottom", fontsize=9)
+        ax2.text(i, val, f"{val:.0f}%", ha="center", va="bottom", fontsize=10)
     for i, val in enumerate(processed["PAT (%)"]):
-        ax2.text(i, val, f"{val:.0f}%", ha="center", va="bottom", fontsize=9)
+        ax2.text(i, val, f"{val:.0f}%", ha="center", va="bottom", fontsize=10)
 
     bars_labels, bars_handles = ax1.get_legend_handles_labels()
     lines_labels, lines_handles = ax2.get_legend_handles_labels()
-    ax1.legend(bars_labels + lines_labels, bars_handles + lines_handles, loc="upper left")
+    ax1.legend(bars_labels + lines_labels, bars_handles + lines_handles, loc="upper left",fontsize=10)
 
     plt.tight_layout()
     return processed, fig
