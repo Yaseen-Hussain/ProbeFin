@@ -168,7 +168,7 @@ def process_three_years(uploaded_file):
     ax1.set_xticks(x)
     ax1.set_xticklabels(processed["Year"],fontsize=11)
     ax1.set_ylabel("INR (₹ Cr)",fontsize=12)
-    ax1.set_title("Financial Performance (Last 3 FYs)"fontsize=14)
+    ax1.set_title("Financial Performance (Last 3 FYs)",fontsize=14)
 
     for bars in [bars1, bars2, bars3, bars4]:
         for bar in bars:
