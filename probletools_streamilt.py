@@ -198,7 +198,7 @@ def process_three_years(uploaded_file):
 
 st.title("📊 Financial Analysis Tools")
 
-tool_choice = st.selectbox("Choose a Tool:", ["Industry Analysis", "3-Year Financials + Chart"])
+tool_choice = st.selectbox("Choose a Tool:", ["3-Year Financials + Chart", "Industry Analysis"])
 
 if tool_choice == "Industry Analysis":
     uploaded_files = st.file_uploader("Upload Multiple Financial Excel (.xls) Files", type=["xls"], accept_multiple_files=True)
